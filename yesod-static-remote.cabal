@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 95f593cea6608821e78c644d7ebfe319a8671e87d1cba10f448ecb7aa96b366d
+-- hash: d81c1e1169e5a5b39c6ba303e865c804097ffa413a863ca4d6444d11816fb15e
 
 name:           yesod-static-remote
 version:        0.0.0.0
@@ -38,6 +38,8 @@ library
     , directory
     , download
     , filepath
+    , http-client
+    , http-client-tls
     , template-haskell
     , yesod-static
   default-language: Haskell2010

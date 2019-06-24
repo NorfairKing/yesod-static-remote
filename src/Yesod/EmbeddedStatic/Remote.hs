@@ -7,9 +7,10 @@ module Yesod.EmbeddedStatic.Remote
   ) where
 
 import Control.Monad
-import qualified Data.ByteString as SB
+import qualified Data.ByteString.Lazy as LB
 import Language.Haskell.TH
-import Network.Download
+import Network.HTTP.Client
+import Network.HTTP.Client.TLS
 import System.Directory
 import System.FilePath
 import Yesod.EmbeddedStatic
@@ -22,15 +23,15 @@ embedRemoteFileAt ::
   -> Generator
 embedRemoteFileAt fp url = do
   runIO $ ensureFile fp url
-  embedFileAt fp url
+  embedFile fp
 
 ensureFile :: FilePath -> String -> IO ()
 ensureFile rp url = do
   createDirectoryIfMissing True $ takeDirectory rp
   exists <- doesFileExist rp
   unless exists $ do
+    man <- newManager tlsManagerSettings
     putStrLn $ unwords ["Downloading", url, "to put it at", rp]
-    errOrBs <- openURI url
-    case errOrBs of
-      Left err -> fail $ unwords ["Failed to download ", url, "with error", err]
-      Right bs -> SB.writeFile rp bs
+    req <- parseUrlThrow url
+    resp <- httpLbs req man
+    LB.writeFile rp $ responseBody resp

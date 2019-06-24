@@ -23,7 +23,10 @@ library:
     - directory
     - download
     - filepath
+    - http-client
+    - http-client-tls
     - template-haskell
+
 
 tests:
   remote-static-test:

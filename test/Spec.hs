@@ -8,8 +8,9 @@ import Yesod.EmbeddedStatic.Remote
 mkEmbeddedStatic
   False
   "myStatic"
-  [ embedRemoteFileAt "test/deep/README.md"
-   "https://github.com/NorfairKing/yesod-static-remote/blob/master/README.md"
+  [ embedRemoteFileAt
+      "tmp/test/deep/README.md"
+      "https://raw.githubusercontent.com/NorfairKing/yesod-static-remote/master/README.md"
   ]
 
 main :: IO ()
