@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d81c1e1169e5a5b39c6ba303e865c804097ffa413a863ca4d6444d11816fb15e
+-- hash: 1fa979e2ae3a67d8c5387c3970bda5bfe431c85f03fe6dbbd5498ff32d46b908
 
 name:           yesod-static-remote
 version:        0.0.0.0
@@ -19,7 +19,6 @@ license-file:   LICENSE
 build-type:     Simple
 extra-source-files:
     README.md
-    ChangeLog.md
 
 source-repository head
   type: git
@@ -36,7 +35,6 @@ library
       base >=4.7 && <5
     , bytestring
     , directory
-    , download
     , filepath
     , http-client
     , http-client-tls
