@@ -2,9 +2,11 @@
 {-# LANGUAGE TemplateHaskell #-}
 
 module Yesod.EmbeddedStatic.Remote
-  ( embedRemoteFileAt
-  , ensureFile
-  ) where
+  ( embedRemoteFile,
+    embedRemoteFileAt,
+    ensureFile,
+  )
+where
 
 import Control.Monad
 import qualified Data.ByteString.Lazy as LB
@@ -17,21 +19,36 @@ import Yesod.EmbeddedStatic
 import Yesod.EmbeddedStatic.Types
 
 -- | Embed a file after downloading it (once, and caching it locally)
-embedRemoteFileAt ::
-     FilePath -- ^ The path to put it (relative)
-  -> String -- ^ The url to download it from
-  -> Generator
-embedRemoteFileAt fp url = do
-  runIO $ ensureFile fp url
+embedRemoteFile ::
+  -- | The path to put it (relative)
+  FilePath ->
+  -- | The url to download it from
+  String ->
+  Generator
+embedRemoteFile fp url = do
+  runIO $ ensureFile fp fp url
   embedFile fp
 
-ensureFile :: FilePath -> String -> IO ()
-ensureFile rp url = do
+-- | Embed a file after downloading it (once, and caching it locally)
+embedRemoteFileAt ::
+  -- | The path to put it (relative)
+  FilePath ->
+  -- | The path to generate for it (for the yesod naming) (relative)
+  String ->
+  -- | The url to download it from
+  String ->
+  Generator
+embedRemoteFileAt fp fp' url = do
+  runIO $ ensureFile fp fp' url
+  embedFileAt fp fp'
+
+ensureFile :: FilePath -> String -> String -> IO ()
+ensureFile rp rp' url = do
   createDirectoryIfMissing True $ takeDirectory rp
   exists <- doesFileExist rp
   unless exists $ do
     man <- newManager tlsManagerSettings
-    putStrLn $ unwords ["Downloading", url, "to put it at", rp]
+    putStrLn $ unwords ["Downloading", url, "to put it at", rp, "and embed it at", rp']
     req <- parseUrlThrow url
     resp <- httpLbs req man
     LB.writeFile rp $ responseBody resp
