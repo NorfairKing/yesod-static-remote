@@ -31,19 +31,19 @@ embedRemoteFile fp url = do
 
 -- | Embed a file after downloading it (once, and caching it locally)
 embedRemoteFileAt ::
-  -- | The path to put it (relative)
-  FilePath ->
   -- | The path to generate for it (for the yesod naming) (relative)
   String ->
+  -- | The path to put it (relative)
+  FilePath ->
   -- | The url to download it from
   String ->
   Generator
-embedRemoteFileAt fp fp' url = do
-  runIO $ ensureFile fp fp' url
-  embedFileAt fp fp'
+embedRemoteFileAt fp' fp url = do
+  runIO $ ensureFile fp' fp url
+  embedFileAt fp' fp
 
-ensureFile :: FilePath -> String -> String -> IO ()
-ensureFile rp rp' url = do
+ensureFile :: String -> FilePath -> String -> IO ()
+ensureFile rp' rp url = do
   createDirectoryIfMissing True $ takeDirectory rp
   exists <- doesFileExist rp
   unless exists $ do
