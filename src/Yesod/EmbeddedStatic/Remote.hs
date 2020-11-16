@@ -1,6 +1,3 @@
-{-# LANGUAGE QuasiQuotes #-}
-{-# LANGUAGE TemplateHaskell #-}
-
 module Yesod.EmbeddedStatic.Remote
   ( embedRemoteFile,
     embedRemoteFileAt,

@@ -2,3 +2,4 @@
 *.cabal
 *~
 tmp/
+.pre-commit-config.yaml
