@@ -1,5 +1,6 @@
 .stack-work/
 *.cabal
+result*
 *~
 tmp/
 .pre-commit-config.yaml
