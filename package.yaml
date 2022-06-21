@@ -4,12 +4,10 @@ github:              "NorfairKing/yesod-static-remote"
 license:             MIT
 author:              "Tom Sydney Kerckhove"
 maintainer:          "syd@cs-syd.eu"
-copyright:           "Copyright: (c) 2019 Tom Sydney Kerckhove"
+copyright:           "Copyright: (c) 2019-2022 Tom Sydney Kerckhove"
 
 extra-source-files:
 - README.md
-
-description:         Please see the README on GitHub at <https://github.com/NorfairKing/remote-static#readme>
 
 dependencies:
 - base >= 4.7 && < 5
@@ -24,15 +22,3 @@ library:
     - http-client
     - http-client-tls
     - template-haskell
-
-
-tests:
-  remote-static-test:
-    main:                Spec.hs
-    source-dirs:         test
-    ghc-options:
-    - -threaded
-    - -rtsopts
-    - -with-rtsopts=-N
-    dependencies:
-    - yesod-static-remote
