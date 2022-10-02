@@ -1,13 +1,13 @@
 cabal-version: 1.12
 
--- This file has been generated from package.yaml by hpack version 0.34.6.
+-- This file has been generated from package.yaml by hpack version 0.35.2.
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 8e92b41608db5341c5b8867206e86d7ff32e7af18c8fbb58bba533982b936146
+-- hash: c82f13c3ffdeefaaa0bed4ef9c0c3d0dc60fb9b8b87f03f48629e2322eca5521
 
 name:           yesod-static-remote
-version:        0.0.0.0
+version:        0.0.0.1
 homepage:       https://github.com/NorfairKing/yesod-static-remote#readme
 bug-reports:    https://github.com/NorfairKing/yesod-static-remote/issues
 author:         Tom Sydney Kerckhove
