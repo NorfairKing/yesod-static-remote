@@ -29,26 +29,8 @@
       pkgs = pkgsFor nixpkgs;
     in
     {
-      overlays = final: prev:
-        with final.haskell.lib;
-        {
-          haskellPackages =
-            prev.haskellPackages.override (
-              old:
-              {
-                overrides =
-                  final.lib.composeExtensions (old.overrides or (_: _: { })) (
-                    self: super: {
-                      yesod-static-remote =
-                        failOnAllWarnings (self.callPackage ./default.nix { });
-                    }
-                  );
-              }
-            );
-        };
-
-      packages.yesod-static-remote = pkgs.haskellPackages.yesod-static-remote;
-      packages.default = self.packages.${system}.yesod-static-remote;
+      overlays = import ./nix/overlay.nix;
+      packages.default = pkgs.haskellPackages.yesod-static-remote;
       checks =
         let
           backwardCompatibilityCheckFor = nixpkgs:
