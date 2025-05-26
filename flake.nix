@@ -1,8 +1,12 @@
 {
   description = "yesod-static-remote";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-25.05";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
+    nixpkgs-24_11.url = "github:NixOS/nixpkgs?ref=nixos-24.11";
+    nixpkgs-24_05.url = "github:NixOS/nixpkgs?ref=nixos-24.05";
+    nixpkgs-23_11.url = "github:NixOS/nixpkgs?ref=nixos-23.11";
+    nixpkgs-23_05.url = "github:NixOS/nixpkgs?ref=nixos-23.05";
     nixpkgs-22_11.url = "github:NixOS/nixpkgs?ref=nixos-22.11";
     nixpkgs-22_05.url = "github:NixOS/nixpkgs?ref=nixos-22.05";
     nixpkgs-21_11.url = "github:NixOS/nixpkgs?ref=nixos-21.11";
@@ -12,6 +16,10 @@
   outputs =
     { self
     , nixpkgs
+    , nixpkgs-24_11
+    , nixpkgs-24_05
+    , nixpkgs-23_11
+    , nixpkgs-23_05
     , nixpkgs-22_11
     , nixpkgs-22_05
     , nixpkgs-21_11
@@ -38,6 +46,10 @@
             in pkgs'.haskellPackages.yesod-static-remote;
           allNixpkgs = {
             inherit
+              nixpkgs-24_11
+              nixpkgs-24_05
+              nixpkgs-23_11
+              nixpkgs-23_05
               nixpkgs-22_11
               nixpkgs-22_05
               nixpkgs-21_11
