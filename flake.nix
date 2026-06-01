@@ -1,21 +1,15 @@
 {
   description = "yesod-static-remote";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-25.11";
+    nixpkgs.url = "github:NixOS/nixpkgs?ref=nixos-26.05";
     pre-commit-hooks.url = "github:cachix/pre-commit-hooks.nix";
-    nixpkgs-25_05.url = "github:NixOS/nixpkgs?ref=nixos-25.05";
-    nixpkgs-24_11.url = "github:NixOS/nixpkgs?ref=nixos-24.11";
-    nixpkgs-24_05.url = "github:NixOS/nixpkgs?ref=nixos-24.05";
-    nixpkgs-23_11.url = "github:NixOS/nixpkgs?ref=nixos-23.11";
+    nixpkgs-25_11.url = "github:NixOS/nixpkgs?ref=nixos-25.11";
   };
 
   outputs =
     { self
     , nixpkgs
-    , nixpkgs-25_05
-    , nixpkgs-24_11
-    , nixpkgs-24_05
-    , nixpkgs-23_11
+    , nixpkgs-25_11
     , pre-commit-hooks
     }:
     let
@@ -38,10 +32,7 @@
             in pkgs'.haskellPackages.yesod-static-remote;
           allNixpkgs = {
             inherit
-              nixpkgs-25_05
-              nixpkgs-24_11
-              nixpkgs-24_05
-              nixpkgs-23_11;
+              nixpkgs-25_11;
           };
           backwardCompatibilityChecks = pkgs.lib.mapAttrs (_: nixpkgs: backwardCompatibilityCheckFor nixpkgs) allNixpkgs;
         in
